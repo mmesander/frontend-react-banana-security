@@ -1,20 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useContext} from 'react';
+import {Link} from 'react-router-dom';
+import {AuthContext} from "../context/AuthContext";
 
 function SignIn() {
-  return (
-    <>
-      <h1>Inloggen</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+    const {login} = useContext(AuthContext);
 
-      <form>
-        <p>*invoervelden*</p>
-        <button>Inloggen</button>
-      </form>
+    return (
+        <>
+            <h1>Inloggen</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id
+                molestias qui quo unde?</p>
 
-      <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
-    </>
-  );
+            <form onSubmit={login}>
+                <label htmlFor='username-field'>
+                    Gebruikersnaam
+                    <input
+                        type="text"
+                        name="username"
+                        id="username-field"
+                        placeholder="Gebruikersnaam"
+                    />
+                </label>
+                <label htmlFor='password-field'>
+                    Wachtwoord
+                    <input
+                        type="password"
+                        name="password"
+                        id="password-field"
+                        placeholder="Wachtwoord"
+                    />
+                </label>
+                <button
+                    type="submit"
+                >
+                    Inloggen
+                </button>
+            </form>
+
+            <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
+        </>
+    );
 }
 
 export default SignIn;
